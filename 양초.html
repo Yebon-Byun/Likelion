@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> 양초를 팝니다.</title>
+</head>
+<style>
+    h2 {
+        font-size: 15px;
+    }
+
+    .image {
+        background-image: url('https://framacph.centracdn.net/client/dynamic/images/2686_bd81d1cec1-frama-scented-candle-st-pauls-packshot-1-full.jpg');
+        width: 300px;
+        height: 300px;
+        background-size: cover;
+    }
+    .garage-title {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    
+    .small-font {
+        font-size: 20px;
+    }
+</style> 
+<body>
+    <div class="image" ></div>
+    <div class="garage-title">
+    <h1>양초를 팝니다. <span class="small-font"> 가격: 50000원 / 개</span></h1>
+    <h2>이 양초는 사실 특별한 힘을 가지고 있어요. 양초를 켜고 소원을 빌면 짜자잔 뭐든지 이뤄지게 된답니다. 하나 사가세요! 대나무 향이 아주 좋아요.</h2>
+    </div>
+    <form class="needs-validation" novalidate>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom03">주문자 이름:</label>
+            <input type="text" class="form-control" id="validationCustom03" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom04">주소:</label>
+            <input type="text" class="form-control" id="validationCustom04" required>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">수량:</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom05">전화번호:</label>
+            <input type="text" class="form-control" id="validationCustom05" required>
+          </div>
+        </div>
+       
+      </form>
+      
+      <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+      </script>
+</body>
+</html>
