@@ -1,119 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+​
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework_1</title>
+    ​
+    <!-- jQuery Import -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    ​
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gamja+Flower&family=Nanum+Gothic&family=Nanum+Myeongjo&family=Stylish&family=Sunflower:wght@300&display=swap"
+        rel="stylesheet">
+    ​
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
-    <title>부트스트랩 연습하기</title>
-
+    ​
     <style>
-        .wrap {
-            width: 900px;
+        * {
+            font-family: 'Sunflower', sans-serif;
+        }
+
+        #post-box{
+            width: 600px;
             margin: 10px auto;
+            padding: 50px;
+            border: black solid;
+            border-radius: 5px;
+        }
+        ​ .mytitle {
+            border-radius: 15px;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        ​ .wrap {
+            margin: 10px auto;
+            width: 500px;
+        }
+
+        ​.image {
+            margin-left: 10px auto;
+            margin-right: 10px auto;
+            margin: 10px auto;
+            width: 300px
+        }
+
+
+        ​ .text-center {
+            text-align: center;
         }
     </style>
+    <script>
+        function hey() {
+            let userName = $("#userName").val();
+            let count = $("#count").val();
+            let address = $("#address").val();
+            let phonenumber = $("#phonenumber").val();
+
+            if (userName == '') {
+                alert('이름을 입력해주세요');
+            } 
+            else if (count == '--수량을 선택하세요--') {
+                alert('수량를 선택해주세요');
+            } 
+            else if (address == '') {
+                alert('주소를 입력해주세요');
+            } 
+            else if (phonenumber == '') {
+                alert('전화번호를 입력해주세요');
+            } 
+            else {
+                alert('주문이 완료되었습니다.');
+            }
+        }
+
+        $(document).ready(function () {
+            alert('다 로딩됐다!')
+            // 여기에 환율 API Ajax 요청을 하면 되겠죠?
+            $.ajax({
+                type: "GET",
+                url: "https://api.manana.kr/exchange/rate.json",
+                data: {},
+                success: function (response) {
+                    let exchangerate = response[1]['rate'];
+                    let exchange_rate = "달러-원 환율: " + exchangerate;
+                    $("#exchangerate").text(exchange_rate);
+                }
+            })
+        });
+
+
+    </script>
 </head>
+​
 
 <body>
-
-    <div class="wrap">
-        <div class="jumbotron">
-            <h1 class="display-4">Hello, world!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention
-                to
-                featured content or information.</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-            </p>
+    <div class = 'form-post' id='post-box'>
+        <div class = 'wrap'>
+        <img class="image" width="500" height="600"
+                src=https://previews.123rf.com/images/hulinska1yevheniia/hulinska1yevheniia1310/hulinska1yevheniia131000020/22956801-ilustraci%C3%B3n-monocrom%C3%A1tica-del-vector-de-la-pluma-de-la-tinta.jpg?fj=1">
+                <p></p>
+        <span style="font-size: 50px">만년필</span>
+        <span style="font-size: 25px">가격: 10,000원/개</span><br>
+        <span style="font-size: 18px">이 펜으로 공부하면 파이널 만점!!! (믿거나 말거나...)</span>
+        <div>
+            <span style="font-size: 18px; color: blue" id="exchangerate"></span>
         </div>
+        <p>
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">주문자 이름</div>
+            </div>
+            <input type="text" class="form-control" id="userName">
+        </div>
+        </p>
+        <p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">수량</label>
+            </div>
+            <select class="custom-select" id="count">
+                <option selected>- 수량을 선택하세요 -</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="3">4</option>
+                <option value="3">5</option>
 
-        <div class="card-columns">
-            <div class="card">
-                <img class="card-img-top"
-                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                    alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title that wraps to a new line</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                </div>
+
+            </select>
+        </div>
+        </p>
+        <p>
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">주소</div>
             </div>
-            <div class="card">
-                <img class="card-img-top"
-                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                    alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title that wraps to a new line</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                </div>
+            <input type="text" class="form-control" id="address">
+        </div>
+        </p>
+        <p>
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">전화번호</div>
             </div>
-            <div class="card">
-                <img class="card-img-top"
-                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                    alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title that wraps to a new line</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top"
-                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                    alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title that wraps to a new line</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top"
-                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                    alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title that wraps to a new line</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top"
-                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                    alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title that wraps to a new line</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                </div>
-            </div>
+            <input type="text" class="form-control" id="phonenumber">
+        </div>
+        </p>
+        <p>
+        <div class="text-center">
+            <button onclick="hey()" type="button" class="btn btn-primary">주문하기</button>
+        </div>
+        </p>
+        </div>
         </div>
     </div>
 </body>
+​
 
 </html>
